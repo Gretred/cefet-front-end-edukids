@@ -6,13 +6,16 @@
 
 #controles ul:hover {
   transform: translateX(0);
+  opacity: 1;
 }
 
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
  #controles ul {
-
+    transition: opacity 900ms ease-in , 
+                transform 900ms linear;
+    opacity: 0.2;
  }
 
 /*
@@ -24,17 +27,61 @@
  *   - atacando: animal dá um salto e cresce, com uma borda vermelha
  */
 .com-fome {
+animation: piscando 1s ease-in 0s infinite alternate ;
+}
 
+@keyframes piscando {
+  from {opacity: 1;}
+  to {opacity: 0.1;}
 }
 
 .satisfeito {
+animation: borda 1s ease 0s 1 forwards,
+           rodando 4s ease 0s 1 forwards;
+}
+
+@keyframes borda {
+  from {border: 2px solid silver; padding: 10px;}
+  to {border: 10px solid rgb(45, 223, 45);  padding: 0px;}
 
 }
 
+@keyframes rodando  {
+  from {transform: rotateY(0deg);}
+  to {transform: rotateY(1800deg);}
+}
+
 .com-raiva {
+  position: relative;
+  animation: deslocando 600ms ease-in-out 0s 2 alternate,
+             borda1 1s ease 0s 1 forwards;
+
+}
+
+@keyframes deslocando {
+ from {left: 0px; transform: rotateZ(0deg);}
+ to  {left: -30px; transform: rotateZ(180deg);}
+}
+
+@keyframes borda1 {
+  from {border: 2px solid silver; padding: 10px;}
+  to {border: 10px solid rgb(204, 33, 27);  padding: 0px;}
 
 }
 
 .atacando {
+  position: relative;
+  animation: saltando 300ms ease-in-out 0s infinite alternate,
+             borda1 900ms ease 0s 1 forwards,
+             girando 300ms ease 0s 2 alternate;
+}
 
+@keyframes saltando {
+  from {top: 0px; transform: scale(1);}
+  to  {top: -30px; transform: scale(1.1);}
+}
+
+@keyframes girando  {
+  from  {transform: rotateZ(0deg);}
+  to  {transform: rotateZ(360deg);}
 }
